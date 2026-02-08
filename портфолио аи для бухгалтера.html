@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио AI-навыков бухгалтера</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2d3b8b;
+            --primary-light: #3a4bb8;
+            --secondary: #00b4d8;
+            --accent: #ff6b6b;
+            --accent-light: #ff9e7d;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Заголовок с градиентом */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .gradient-title {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .gradient-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Карточки навыков */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .skill-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .skill-number {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .skill-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .skill-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+        
+        /* Кейсы в выделенных блоках */
+        .cases-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cases-title i {
+            color: var(--accent);
+        }
+        
+        .case-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .case-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .case-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .mini-template {
+            background: linear-gradient(135deg, rgba(45, 59, 139, 0.05) 0%, rgba(0, 180, 216, 0.05) 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* Сетка инструментов в виде тегов */
+        .tags-section {
+            margin: 60px 0;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .tag {
+            background: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tag:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.15);
+        }
+        
+        .tag i {
+            color: var(--secondary);
+        }
+        
+        /* Адаптивный дизайн */
+        @media (max-width: 992px) {
+            .gradient-title {
+                font-size: 2.8rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gradient-title {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .tags-container {
+                gap: 10px;
+            }
+            
+            .tag {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gradient-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .skill-card {
+                padding: 25px 20px;
+            }
+        }
+        
+        /* Акцентные элементы */
+        .accent-text {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .highlight-box {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+        }
+        
+        .highlight-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .highlight-title i {
+            font-size: 1.8rem;
+        }
+        
+        /* Иконки для визуальной иерархии */
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(45, 59, 139, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .icon-wrapper i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .warning-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            margin-top: 20px;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="gradient-title">ПОРТФОЛИО AI-НАВЫКОВ БУХГАЛТЕРА</h1>
+            <p class="subtitle">Современные подходы к автоматизации бухгалтерских задач с использованием искусственного интеллекта</p>
+        </header>
+        
+        <section>
+            <h2 class="section-title">Ключевые AI-навыки для бухгалтера и практические кейсы</h2>
+            
+            <div class="skills-container">
+                <!-- Карточка навыка 1 -->
+                <div class="skill-card">
+                    <div class="skill-number">1</div>
+                    <h3 class="skill-name">Формулирование задачи и "правильный запрос" (prompting)</h3>
+                    <p class="skill-description">Навык: описывать контекст, цель, формат результата, ограничения, примеры.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Сформировать чек-лист закрытия месяца под вашу компанию (по этапам, ответственным, срокам).</li>
+                        <li>Сгенерировать шаблоны писем контрагентам (запрос УПД, актов, исправлений, закрывающих).</li>
+                        <li>Составить регламент контроля первички (что проверяем в УПД/акте/счёте-фактуре, типовые ошибки).</li>
+                    </ul>
+                    
+                    <div class="mini-template">
+                        <strong>Мини-шаблон запроса:</strong><br>
+                        "Ты бухгалтер. Контекст: … Цель: … Дай результат в формате: таблица (колонки …). Ограничения: … Пример строки: …"
+                    </div>
+                </div>
+                
+                <!-- Карточка навыка 2 -->
+                <div class="skill-card">
+                    <div class="skill-number">2</div>
+                    <h3 class="skill-name">Умение "нормализовать" данные и превращать хаос в таблицу</h3>
+                    <p class="skill-description">Навык: извлекать из текста/писем/сканов структурированные поля (контрагент, ИНН, дата, сумма, НДС, договор, назначение платежа).</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Из выгрузки банка/назначений платежей сделать таблицу для импорта/сверки (платёж → договор/счёт/статья ДДС).</li>
+                        <li>Превратить переписку "всё в одном письме" в реестр документов: что получено/не получено/на исправлении.</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Важное замечание
+                        </div>
+                        <p>Если источник — сканы/картинки, точность зависит от качества. Критичные суммы/НДС всегда перепроверять.</p>
+                    </div>
+                </div>
+                
+                <!-- Карточка навыка 3 -->
+                <div class="skill-card">
+                    <div class="skill-number">3</div>
+                    <h3 class="skill-name">Классификация и автокодирование операций (статьи, счета, ЦФО)</h3>
+                    <p class="skill-description">Навык: обучить себя формулировать правила + проверять качество классификации.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Автораскладка платежей по статьям БДДС: "аренда/логистика/сырьё/маркетинг/налоги…".</li>
+                        <li>Классификация расходов для управленки: "производственные/коммерческие/административные".</li>
+                        <li>Подсказки по аналитике: ЦФО/проект/подразделение по контрагенту и назначению.</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Реалистичное ограничение
+                        </div>
+                        <p>Без вашей справочной базы (правила, примеры, словарь контрагентов) AI будет ошибаться. Нужен словарь соответствий и режим "покажи уверенность + спорные строки".</p>
+                    </div>
+                </div>
+                
+                <!-- Карточка навыка 4 -->
+                <div class="skill-card">
+                    <div class="skill-number">4</div>
+                    <h3 class="skill-name">Сверки: банк ↔ 1С, ЭДО ↔ учёт, взаиморасчёты</h3>
+                    <p class="skill-description">Навык: строить алгоритм сверки + формировать отчёты расхождений.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Сверка банка и 1С: найти платежи без отражения, дубль-проведения, неверные суммы/даты.</li>
+                        <li>Сверка ЭДО (Диадок/СБИС) и 1С: документы есть в ЭДО, но не отражены, и наоборот.</li>
+                        <li>Взаиморасчёты: подготовка акта сверки и списка спорных документов.</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Как делать правильно с AI
+                        </div>
+                        <p>Просите: "сформируй реестр расхождений + гипотеза причины + что проверить".</p>
+                        <p>Просите отдельный вывод: "строки с низкой уверенностью".</p>
+                    </div>
+                </div>
+                
+                <!-- Карточка навыка 5 -->
+                <div class="skill-card">
+                    <div class="skill-number">5</div>
+                    <h3 class="skill-name">Контрольные процедуры и внутренний аудит (анти-ошибки)</h3>
+                    <p class="skill-description">Навык: составлять "контрольные тесты" для бухучёта и документооборота.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Чек-лист "красных флагов": необычные суммы, платежи без договора/счёта, НДС "не бьётся", контрагент без реквизитов, закрывающие не получены > N дней.</li>
+                        <li>Еженедельный отчёт руководству: что просрочено, риск, сумма, ответственный.</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка навыка 6 -->
+                <div class="skill-card">
+                    <div class="skill-number">6</div>
+                    <h3 class="skill-name">Подготовка пояснений и управленческих комментариев</h3>
+                    <p class="skill-description">Навык: переводить цифры в понятные объяснения без "воды".</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Пояснение отклонений "факт vs бюджет" по статьям.</li>
+                        <li>Комментарий к изменению дебиторки/кредиторки.</li>
+                        <li>Черновик "почему прибыль упала" (с запросом недостающих данных).</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-star"></i>
+                            Особенная польза AI
+                        </div>
+                        <p>Здесь AI особенно полезен: быстро делает структуру и нормальный деловой стиль.</p>
+                    </div>
+                </div>
+                
+                <!-- Карточка навыка 7 -->
+                <div class="skill-card">
+                    <div class="skill-number">7</div>
+                    <h3 class="skill-name">Коммуникации: письма, претензии, протоколы разногласий</h3>
+                    <p class="skill-description">Навык: быстро готовить корректные деловые письма и варианты тона.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Кейсы</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Запрос исправленного УПД/акта.</li>
+                        <li>Письмо о расхождениях по поставке/цене/НДС.</li>
+                        <li>Напоминание о подписании документов в ЭДО.</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка навыка 8 -->
+                <div class="skill-card">
+                    <div class="skill-number">8</div>
+                    <h3 class="skill-name">Конфиденциальность и "безопасный режим" работы с AI</h3>
+                    <p class="skill-description">Навык: минимизировать риски утечки и ошибки.</p>
+                    
+                    <div class="cases-title">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Практика</span>
+                    </div>
+                    <ul class="case-list">
+                        <li>Убирать персональные данные и коммерческую тайну: заменять на идентификаторы.</li>
+                        <li>Не отправлять в AI: паспортные данные, полные банковские реквизиты, ключи ЭП, логины.</li>
+                        <li>Делать "маски": Контрагент_A, Договор_17, Сумма_Х.</li>
+                    </ul>
+                    
+                    <div class="mini-template">
+                        <strong>Важное правило:</strong><br>
+                        Для важных выводов — "покажи расчёт/правило, на котором основан вывод".
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Сетка инструментов в виде тегов -->
+        <section class="tags-section">
+            <h2 class="section-title">Инструменты и технологии для AI-бухгалтера</h2>
+            
+            <div class="tags-container">
+                <div class="tag">
+                    <i class="fas fa-robot"></i>
+                    <span>Prompt-инженерия</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-table"></i>
+                    <span>Структурирование данных</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-code"></i>
+                    <span>Автоматизация классификации</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-search"></i>
+                    <span>Алгоритмы сверки</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Контрольные процедуры</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Аналитика отклонений</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Шаблоны документов</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-lock"></i>
+                    <span>Безопасность данных</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-cogs"></i>
+                    <span>Интеграция с 1С</span>
+                </div>
+                <div class="tag">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>ЭДО системы</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <h3>Портфолио AI-навыков бухгалтера</h3>
+            <p class="footer-text">Современные подходы к автоматизации бухгалтерских задач</p>
+            <p class="footer-text">© 2023 | Адаптивный дизайн с использованием CSS Grid и Flexbox</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Простая анимация при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillCards = document.querySelectorAll('.skill-card');
+            
+            // Анимация при наведении на теги
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Анимация при прокрутке для карточек
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            skillCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
